@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -22,6 +23,9 @@ ReadMe.Asset in the project had Missing Mono script -> opened the file in an IDE
 
 ** Task 1 ** 
 
+Scene changes
+Modified anchor positions and axis values on all Carriages such that the piviot point was consistent for each point. 
+Increaed Angular dampening (not required, however a strong force on the ferris wheel caused carriages to swing with momentum that impacted the wheel) 
 
 */
 
@@ -29,7 +33,11 @@ public class PauseScreenManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private Slider forceSlider;
+    public event Action<bool> onPause;
+
     public Slider ForceSlider => forceSlider;
+    public bool GetPauseState() => m_paused;
+    public InputAction PauseAction => pauseAction;
     
     private bool m_paused = false;
     
@@ -38,11 +46,11 @@ public class PauseScreenManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        pauseAction = InputSystem.actions.FindAction("Cancel");
     }
 
     private void Start()
     {
-        pauseAction = InputSystem.actions.FindAction("Cancel");
     }
 
     void Update()
@@ -57,5 +65,6 @@ public class PauseScreenManager : MonoBehaviour
     {
         m_paused = !m_paused;
         pauseScreen.SetActive(m_paused);
+        onPause?.Invoke(m_paused);
     }
 }
