@@ -24,9 +24,23 @@ ReadMe.Asset in the project had Missing Mono script -> opened the file in an IDE
 ** Task 1 ** 
 
 Scene changes
-Modified anchor positions and axis values on all Carriages such that the piviot point was consistent for each point. 
-Increaed Angular dampening (not required, however a strong force on the ferris wheel caused carriages to swing with momentum that impacted the wheel) 
+Modified anchor positions and axis values on all Carriages such that the piviot point was consistent for each point. (original pivots that varied on the x axis made the torque unstable)
+Increaed Angular dampening (not required, however a strong force on the ferris wheel caused carriages to swing with high values of momentum) 
+Decisions around Rigidbody & constraints were made mostly on Game Feel- it's possible to make the carriages momentum potentially more realisitc by removing this dampening and modifying other properties such as
+Limits, et al but these dampening modification felt best (personally) when playtesting. 
+Comments on code explain all other changes.
 
+** Task 2 ** 
+
+
+** Notes on AI and LLMs **
+
+No LLMs were used to generate any code that appears in this project 
+ChatGPT was used a couple of times for basic Unity documentation queries where a LLM was more pratcical than search results
+
+sample:
+"Whats the syntax for assembly variables in Unity. i.e constants in the ide that ignores code when set to false (uses # syntax in cpp)?"
+as a shortcut to reading documentation on define symbols and the location of scripting define symbols in the Editor
 */
 
 public class PauseScreenManager : MonoBehaviour
