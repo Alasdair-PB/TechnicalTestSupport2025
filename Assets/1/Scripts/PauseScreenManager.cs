@@ -8,6 +8,11 @@ using UnityEngine.UI;
 Development Journal
 --------------------------------------------------------------------------------------
 
+Notes for before submission
+** Add assembly defintions
+** Add namespaces
+
+
 **Project Setup**
 When importing the package there were many missing references, input bindings and package dependencies
 I initialy opened project in 2022.3.35 (my default lts editor) errors in the input system led me to import the input package
@@ -31,12 +36,24 @@ Limits, et al but these dampening modification felt best (personally) when playt
 Comments on code explain all other changes.
 
 ** Task 2 ** 
+Installed Android Build support Module for this Unity Editor version then switched the build target to android in this project
+Deployed to personal android device as an initial test before adding plugin complexity
+Discovered graphical issue on android device- (sparkling white dots see gif provided)
+
+
+Installed C++ android development tools and C++ Clang tools. 
+Created dynamic shared library project in Visual studio
+Ran into issues with VS file paths-> clang could not be found -> reset ndk and sdk path locations in visual studio but error persisted. 
+
+
+** Task 3 ** 
+Looked at Documetation for IParallelJobs otherwise no noteworthy implementation details other than code in RSummation.cs. 
 
 
 ** Notes on AI and LLMs **
 
 No LLMs were used to generate any code that appears in this project 
-ChatGPT was used a couple of times for basic Unity documentation queries where a LLM was more pratcical than search results
+ChatGPT was used a couple of times for basic documentation queries where a LLM was more pratcical than search results
 
 sample:
 "Whats the syntax for assembly variables in Unity. i.e constants in the ide that ignores code when set to false (uses # syntax in cpp)?"
