@@ -8,26 +8,20 @@ public class PluginManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI proText;
 
-    const string DLL_NAME = "libtimedatalocale.so";
+    const string DLL_NAME = "timedatalocale";
+
+
 
     [DllImport(DLL_NAME)]
-    private static extern IntPtr PrintHello();
-
-    [DllImport(DLL_NAME)]
-    private static extern int PrintANumber();
-
-    [DllImport(DLL_NAME)]
-    private static extern int AddTwoIntegers(int a, int b);
-
-    [DllImport(DLL_NAME)]
-    private static extern float AddTwoFloats(float a, float b);
+    private static extern int add(int x, int y);
 
     void Start()
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
         
-        string hello = Marshal.PtrToStringAuto(PrintHello());
-        proText.text = hello;
+        //string hello = Marshal.PtrToStringAuto(PrintHello());
+        int x = add(1, 2); 
+        proText.text = "" + (x);
 
 #else
         proText.text = "JNI call only works on Android device.";

@@ -8,10 +8,9 @@ using UnityEngine.UI;
 Development Journal
 --------------------------------------------------------------------------------------
 
-Notes for before submission
+Notes for before submission to myself @alasdair
 ** Add assembly defintions
 ** Add namespaces
-
 
 **Project Setup**
 When importing the package there were many missing references, input bindings and package dependencies
@@ -37,13 +36,23 @@ Comments on code explain all other changes.
 
 ** Task 2 ** 
 Installed Android Build support Module for this Unity Editor version then switched the build target to android in this project
-Deployed to personal android device as an initial test before adding plugin complexity
-Discovered graphical issue on android device- (sparkling white dots see gif provided)
-
+Deployed to personal android device (OnePlus) as an initial test before adding plugin complexity
 
 Installed C++ android development tools and C++ Clang tools. 
-Created dynamic shared library project in Visual studio
-Ran into issues with VS file paths-> clang could not be found -> reset ndk and sdk path locations in visual studio but error persisted. 
+Created dynamic shared library project in Visual studio, but encountered path issues due to outdated template -> attempted to refactor the project paths to updated ndk path support 
+Refactor proved more time consuming than generating a new project so reconsidered .so development options. 
+Created an android Studio App and reworked the CMake for .so build support
+
+Issues encountered
+fno-exceptions Unity warning -> reworked CMake to account for this
+Shared Library is not 16kb aligned -> reworked to support Arm64 and retargeted player settings to correct android platform for my Oneplus Device 
+Plugin not found errors -> silly errors on my part keeping #define DLLExport __declspec(dllexport) despite not targeting windows platforms and not excluding the lib prefix from the extern plugin name reference
+
+While debugging Plugin not found errors discovered full unity documentation for android plugin development and samples after heading to developer.android.com 
+To confirm currently player settings imported sample .so file from unity sample and deployed to my Android device
+
+
+Discovered graphical issue on android device- (sparkling white dots see gif provided)
 
 
 ** Task 3 ** 
@@ -78,10 +87,6 @@ public class PauseScreenManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         pauseAction = InputSystem.actions.FindAction("Cancel");
-    }
-
-    private void Start()
-    {
     }
 
     void Update()

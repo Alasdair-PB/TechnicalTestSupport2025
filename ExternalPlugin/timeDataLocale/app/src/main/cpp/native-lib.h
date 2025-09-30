@@ -1,14 +1,11 @@
 #ifndef TIMEDATALOCALE_NATIVE_LIB_H
 #define TIMEDATALOCALE_NATIVE_LIB_H
 
-#define DLLExport __declspec(dllexport)
-
 extern "C"
 {
-DLLExport int add(int num1, int num2);
-DLLExport int multiply(int num1, int num2);
-DLLExport int substract(int num1, int num2);
-DLLExport int divide(int num1, int num2);
+    int add(int num1, int num2);
+    int multiply(int num1, int num2);
+    int divide(int num1, int num2);
 }
 
 #endif
