@@ -6,11 +6,17 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class PluginManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI proText;
-    const string DLL_NAME = "timedatalocale";
+    [SerializeField] UIDocument rootDocumet;
+
+    private const string DLL_NAME = "timedatalocale";
+    private Label dateLabel;
+    private Label timeLabel;
+    private Label localeLabel;
 
     [DllImport(DLL_NAME)] private static extern int add(int x, int y);
     [DllImport(DLL_NAME)] private static extern IntPtr getLocale();
@@ -18,6 +24,15 @@ public class PluginManager : MonoBehaviour
     [DllImport(DLL_NAME)] private static extern IntPtr getTime();
     [DllImport(DLL_NAME)] private static extern void release();
     [DllImport(DLL_NAME)] private static extern void releaseString(IntPtr intPtr);
+
+    private void AssignUIReferences()
+    {
+        VisualElement root = rootDocumet.rootVisualElement;
+        root.BringToFront();
+        dateLabel = root.Q("Date_Label") as Label;
+        timeLabel = root.Q("Time_Label") as Label;
+        localeLabel = root.Q("Locale_Label") as Label;
+    }
 
     private void GetDeviceInfo()
     {
@@ -40,7 +55,10 @@ public class PluginManager : MonoBehaviour
         releaseString(localePtr);
         releaseString(datePtr);
         releaseString(timePtr);
-        proText.text = "res: " + locale + " t: " + time + " d: " + date;
+
+        dateLabel.text = date;
+        localeLabel.text = locale;
+        timeLabel.text = time;
 
         release();
 
@@ -59,10 +77,11 @@ public class PluginManager : MonoBehaviour
 
     void Start()
     {
+        AssignUIReferences();
         #if UNITY_ANDROID && !UNITY_EDITOR
             GetDeviceInfo();
         #else
-            proText.text = "JNI call only works on Android device.";
+            dateLabel.text = "JNI call only works on Android device.";
             Debug.Log("JNI call only works on Android device.");
         #endif
     }

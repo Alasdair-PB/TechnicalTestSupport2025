@@ -36,6 +36,7 @@ const char* getStringMethod(const char* methodName)
     const char* temp = env->GetStringUTFChars(jstr, nullptr);
     char* result = strdup(temp);
     env->ReleaseStringUTFChars(jstr, temp);
+    env->DeleteLocalRef(localClass);
     return result; // Creates and returns heap copy allowing jstr to be disposed
 }
 

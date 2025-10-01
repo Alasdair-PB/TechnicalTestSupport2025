@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; background-color: rgb(110, 144, 52);">
+        <ui:Label text="Label" name="Time_Label" />
+        <ui:Label text="Label" name="Date_Label" />
+        <ui:Label text="Label" name="Locale_Label" />
+    </ui:VisualElement>
+</ui:UXML>
