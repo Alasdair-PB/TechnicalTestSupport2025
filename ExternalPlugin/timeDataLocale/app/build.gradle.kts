@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "com.greathookgames.timedatalocale"
-
     compileSdk = 36
+
     defaultConfig {
         minSdk = 35
         ndk {
             abiFilters += listOf("arm64-v8a")
-
         }
+
         externalNativeBuild {
             cmake {
                 cppFlags += "-fms-extensions"
@@ -31,6 +31,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
@@ -39,6 +40,7 @@ android {
         }
     }
 }
+
 
 dependencies {
 

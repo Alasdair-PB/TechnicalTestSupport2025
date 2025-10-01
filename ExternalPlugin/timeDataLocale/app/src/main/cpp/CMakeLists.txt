@@ -29,6 +29,7 @@ project("timedatalocale")
 add_library(${CMAKE_PROJECT_NAME} SHARED
         native-lib.cpp)
 
+
 find_library(log-lib log)
 
 target_link_libraries(${CMAKE_PROJECT_NAME}

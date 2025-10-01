@@ -45,7 +45,6 @@ Created an android Studio App and reworked the CMake for .so build support
 
 Issues encountered
 fno-exceptions Unity warning -> reworked CMake to account for this
-Shared Library is not 16kb aligned -> reworked to support Arm64 and retargeted player settings to correct android platform for my Oneplus Device 
 Plugin not found errors -> silly errors on my part keeping #define DLLExport __declspec(dllexport) despite not targeting windows platforms and not excluding the lib prefix from the extern plugin name reference
 
 While debugging Plugin not found errors discovered full unity documentation for android plugin development and samples after heading to developer.android.com 
